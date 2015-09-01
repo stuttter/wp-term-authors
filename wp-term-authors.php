@@ -153,8 +153,8 @@ final class WP_Term_Authors {
 		// Add the help tab
 		get_current_screen()->add_help_tab(array(
 			'id'      => 'wp_term_authors_help_tab',
-			'title'   => __( 'Term Author', 'wp-term-author' ),
-			'content' => '<p>' . __( 'Set term author to help identify who created or owns each term.', 'wp-term-author' ) . '</p>',
+			'title'   => __( 'Term Author', 'wp-term-authors' ),
+			'content' => '<p>' . __( 'Set term author to help identify who created or owns each term.', 'wp-term-authors' ) . '</p>',
 		) ); ?>
 
 		<style type="text/css">
@@ -221,12 +221,12 @@ final class WP_Term_Authors {
 		}
 
 		// Get the author
-		$author = $this->get_term_author( $term_id );
-		$retval     = '&mdash;';
+		$author_id = $this->get_term_author( $term_id );
+		$retval    = '&mdash;';
 
 		// Output HTML element if not empty
-		if ( ! empty( $author ) ) {
-			$retval = esc_attr( $author );
+		if ( ! empty( $author_id ) ) {
+			$retval = esc_attr( get_user_by( 'id', $author_id )->display_name );
 		}
 
 		echo $retval;
@@ -307,24 +307,58 @@ final class WP_Term_Authors {
 	 * Return author options for use in a dropdown
 	 *
 	 * @since 0.1.2
+	 *
+	 * @param array $args
 	 */
-	protected function get_term_author_options() {
-		$options = wp_get_term_authors();
+	protected function get_term_author_options( $args = array() ) {
+
+		// Parse arguments
+		$r = wp_parse_args( $args, $this->get_default_user_query_args() );
+
+		// Copy arguments for users query
+		$user_args = $r;
+		unset( $user_args['no_author'], $user_args['selected'] );
+
+		// Get users of this site that could be authors
+		$users = get_users( $user_args );
 
 		// Start an output buffer
 		ob_start();
 
-		// Loop through authors and make them into option tags
-		foreach ( $options as $option_id => $option ) : ?>
+		// No author option
+		if ( ! empty( $r['no_author'] ) ) :  ?>
 
-			<option value="<?php echo esc_attr( $option_id ); ?>">
-				<?php echo esc_html( $option ); ?>
+			<option value="0"><?php echo esc_html( $r['no_author'] ); ?></option>
+
+		<?php endif;
+
+		// Loop through users
+		foreach ( $users as $user ) : ?>
+
+			<option value="<?php echo esc_attr( $user->ID ); ?>" <?php selected( $r['selected'], $user->ID ); ?>>
+				<?php echo esc_html( $user->display_name ); ?>
 			</option>
 
 		<?php endforeach;
 
 		// Return the output buffer
 		return ob_get_clean();
+	}
+
+	/**
+	 * Return the default user query arguments
+	 *
+	 * @since 0.1.2
+	 *
+	 * @return array
+	 */
+	protected function get_default_user_query_args() {
+		return apply_filters( 'wp_term_author_default_user_args', array(
+			'no_author'   => esc_html__( '&mdash; No author &mdash;', 'wp-term-authors' ),
+			'selected'    => get_current_user_id(),
+			'count_total' => false,
+			'orderby'     => 'display_name'
+		) );
 	}
 
 	/** Markup ****************************************************************/
@@ -339,13 +373,13 @@ final class WP_Term_Authors {
 
 		<div class="form-field term-author-wrap">
 			<label for="term-author">
-				<?php esc_html_e( 'Author', 'wp-term-author' ); ?>
+				<?php esc_html_e( 'Author', 'wp-term-authors' ); ?>
 			</label>
 			<select name="term-author" id="term-author">
 				<?php echo $this->get_term_author_options(); ?>
 			</select>
 			<p class="description">
-				<?php esc_html_e( 'The author is used to determine which users can see which terms.', 'wp-term-author' ); ?>
+				<?php esc_html_e( 'The author is the user that created this term.', 'wp-term-authors' ); ?>
 			</p>
 		</div>
 
@@ -360,20 +394,24 @@ final class WP_Term_Authors {
 	 * @param object $term
 	 */
 	public function term_author_edit_form_field( $term = false ) {
-		?>
+
+		// Get the term author ID
+		$term_author_id = $this->get_term_author( $term->term_id ); ?>
 
 		<tr class="form-field term-author-wrap">
 			<th scope="row" valign="top">
 				<label for="term-author">
-					<?php esc_html_e( 'Author', 'wp-term-author' ); ?>
+					<?php esc_html_e( 'Author', 'wp-term-authors' ); ?>
 				</label>
 			</th>
 			<td>
-				<select name="term-author" id="term-author">
-					<?php echo $this->get_term_author_options(); ?>
+				<select name="term-author" id="term-author" data-author-id="<?php echo esc_attr( $term_author_id ); ?>">
+					<?php echo $this->get_term_author_options( array(
+						'selected' => (int) $term_author_id
+					) ); ?>
 				</select>
 				<p class="description">
-					<?php esc_html_e( 'The author is used to determine which users can see which terms.', 'wp-term-author' ); ?>
+					<?php esc_html_e( 'The author is the user that created this term.', 'wp-term-authors' ); ?>
 				</p>
 			</td>
 		</tr>
@@ -398,10 +436,12 @@ final class WP_Term_Authors {
 		<fieldset>
 			<div class="inline-edit-col">
 				<label>
-					<span class="title"><?php esc_html_e( 'Author', 'wp-term-author' ); ?></span>
+					<span class="title"><?php esc_html_e( 'Author', 'wp-term-authors' ); ?></span>
 					<span class="input-text-wrap">
 						<select name="term-author">
-							<?php echo $this->get_term_author_options(); ?>
+							<?php echo $this->get_term_author_options( array(
+								'selected' => 0
+							) ); ?>
 						</select>
 					</span>
 				</label>
@@ -470,4 +510,4 @@ function _wp_term_authors() {
 
 	new WP_Term_Authors();
 }
-add_action( 'init', '_wp_term_authors', 98 );
+add_action( 'init', '_wp_term_authors', 88 );
