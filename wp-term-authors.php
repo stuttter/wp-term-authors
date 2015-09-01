@@ -461,13 +461,13 @@ endif;
  *
  * @since 0.1.2
  */
-function _wp_term_author() {
+function _wp_term_authors() {
 
 	// Bail if no term meta
 	if ( ! function_exists( 'add_term_meta' ) ) {
 		return;
 	}
 
-	new WP_Term_Author();
+	new WP_Term_Authors();
 }
-add_action( 'init', '_wp_term_author', 98 );
+add_action( 'init', '_wp_term_authors', 98 );
