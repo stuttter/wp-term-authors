@@ -3,7 +3,7 @@ Contributors: johnjamesjacoby
 Tags: taxonomy, term, meta, metadata, authors, users
 Requires at least: 4.3
 Tested up to: 4.3
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,15 @@ The WordPress support forums: https://wordpress.org/tags/wp-term-authors/
 http://github.com/johnjamesjacoby/wp-term-authors/
 
 == Changelog ==
+
+= 0.1.3 =
+* Use base UI class
+
+= 0.1.2 =
+* Sanitize output
+
+= 0.1.1 =
+* Use display names
 
 = 0.1.0 =
 * Initial release
