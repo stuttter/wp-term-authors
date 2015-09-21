@@ -56,7 +56,7 @@ No. All of WordPress's core database tables remain untouched.
 With WordPress's `get_terms()` function, the same as usual, but with an additional `meta_query` argument according the `WP_Meta_Query` specification:
 http://codex.wordpress.org/Class_Reference/WP_Meta_Query
 
-```
+`
 $terms = get_terms( 'category', array(
 	'depth'      => 1,
 	'number'     => 100,
@@ -69,15 +69,15 @@ $terms = get_terms( 'category', array(
 		'value' => get_current_user_id()
 	) )
 ) );
-```
+`
 
 = Where can I get support? =
 
-The WordPress support forums: https://wordpress.org/tags/wp-term-authors/
+The WordPress support forums: https://wordpress.org/support/plugin/wp-term-authors/
 
 = Where can I find documentation? =
 
-http://github.com/johnjamesjacoby/wp-term-authors/
+http://github.com/stuttter/wp-term-authors/
 
 == Changelog ==
 
