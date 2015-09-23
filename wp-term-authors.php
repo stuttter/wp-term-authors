@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: WP Term Authors
- * Plugin URI:  https://wordpress.org/plugins/wp-term-author/
+ * Plugin URI:  https://wordpress.org/plugins/wp-term-authors/
  * Description: Authors for categories, tags, and other taxonomy terms
  * Author:      John James Jacoby
  * Version:     0.1.3
