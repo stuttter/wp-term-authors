@@ -22,12 +22,12 @@ final class WP_Term_Authors extends WP_Term_Meta_UI {
 	/**
 	 * @var string Plugin version
 	 */
-	public $version = '0.1.2';
+	public $version = '0.1.4';
 
 	/**
 	 * @var string Database version
 	 */
-	public $db_version = 201509010001;
+	public $db_version = 201511090001;
 
 	/**
 	 * @var string Database version
@@ -48,9 +48,9 @@ final class WP_Term_Authors extends WP_Term_Meta_UI {
 
 		// Setup the labels
 		$this->labels = array(
-			'singular'    => esc_html__( 'Author',  'wp-term-color' ),
-			'plural'      => esc_html__( 'Authors', 'wp-term-color' ),
-			'description' => esc_html__( 'The author is the user that created this term.', 'wp-term-color' )
+			'singular'    => esc_html__( 'Author',  'wp-term-authors' ),
+			'plural'      => esc_html__( 'Authors', 'wp-term-authors' ),
+			'description' => esc_html__( 'The author is the user that created this term.', 'wp-term-authors' )
 		);
 
 		// Call the parent and pass the file
@@ -207,4 +207,3 @@ final class WP_Term_Authors extends WP_Term_Meta_UI {
 	}
 }
 endif;
-
