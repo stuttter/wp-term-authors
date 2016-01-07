@@ -97,12 +97,15 @@ final class WP_Term_Authors extends WP_Term_Meta_UI {
 	 * @return mixed
 	 */
 	public function format_output( $meta = '' ) {
-		$user   = get_user_by( 'id', $meta );
-		$retval = ! empty( $user->display_name )
-			? $user->display_name
-			: $user->user_nicename;
+		$user = get_user_by( 'id', $meta );
 
-		return $retval;
+		if ( ! empty( $user->first_name ) && ! empty( $user->last_name ) ) {
+			$display_name = "{$user->first_name} {$user->last_name}";
+		} else {
+			$display_name = $user->display_name;
+		}
+
+		return $display_name;
 	}
 
 	/**
@@ -136,12 +139,14 @@ final class WP_Term_Authors extends WP_Term_Meta_UI {
 
 		// Loop through users
 		foreach ( $users as $user ) :
-			$name = ! empty( $user->display_name )
-				? $user->display_name
-				: $user->user_nicename; ?>
+			if ( ! empty( $user->first_name ) && ! empty( $user->last_name ) ) {
+				$display_name = "{$user->first_name} {$user->last_name}";
+			} else {
+				$display_name = $user->display_name;
+			} ?>
 
 			<option value="<?php echo esc_attr( $user->ID ); ?>" <?php selected( $r['selected'], $user->ID ); ?>>
-				<?php echo esc_html( $name ); ?>
+				<?php echo esc_html( $display_name ); ?>
 			</option>
 
 		<?php endforeach;
