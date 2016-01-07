@@ -5,7 +5,7 @@
  * Plugin URI:  https://wordpress.org/plugins/wp-term-authors/
  * Description: Authors for categories, tags, and other taxonomy terms
  * Author:      John James Jacoby
- * Version:     0.1.4
+ * Version:     0.2.0
  * Author URI:  https://profiles.wordpress.org/johnjamesjacoby/
  * License:     GPL v2 or later
  */
@@ -19,11 +19,6 @@ defined( 'ABSPATH' ) || exit;
  * @since 0.1.2
  */
 function _wp_term_authors() {
-
-	// Bail if no term meta
-	if ( ! function_exists( 'add_term_meta' ) ) {
-		return;
-	}
 
 	// Setup the main file
 	$file = __FILE__;

@@ -1,9 +1,9 @@
 === WP Term Authors ===
 Contributors: johnjamesjacoby, stuttter
 Tags: taxonomy, term, meta, metadata, authors, users
-Requires at least: 4.3
+Requires at least: 4.4
 Tested up to: 4.4
-Stable tag: 0.1.4
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,7 +21,6 @@ This plugin requires [WP Term Meta](https://wordpress.org/plugins/wp-term-meta/ 
 
 * [WP Chosen](https://wordpress.org/plugins/wp-chosen/ "Make long, unwieldy select boxes much more user-friendly.")
 * [WP Event Calendar](https://wordpress.org/plugins/wp-event-calendar/ "The best way to manage events in WordPress.")
-* [WP Term Meta](https://wordpress.org/plugins/wp-term-meta/ "Metadata, for taxonomy terms.")
 * [WP Term Order](https://wordpress.org/plugins/wp-term-order/ "Sort taxonomy terms, your way.")
 * [WP Term Authors](https://wordpress.org/plugins/wp-term-authors/ "Authors for categories, tags, and other taxonomy terms.")
 * [WP Term Colors](https://wordpress.org/plugins/wp-term-colors/ "Pretty colors for categories, tags, and other taxonomy terms.")
@@ -85,6 +84,9 @@ The WordPress support forums: https://wordpress.org/support/plugin/wp-term-autho
 http://github.com/stuttter/wp-term-authors/
 
 == Changelog ==
+
+= 0.2.0 =
+* Update base class
 
 = 0.1.4 =
 * Update base class
