@@ -53,6 +53,16 @@ final class WP_Term_Authors extends WP_Term_Meta_UI {
 	}
 
 	/**
+	 * Enqueue quick-edit JS
+	 *
+	 * @since 0.1.0
+	 */
+	public function enqueue_scripts() {
+		wp_enqueue_script( 'term-author', $this->url . 'assets/js/term-author.js',  array(), $this->db_version, true );
+		wp_enqueue_style( 'term-author', $this->url . 'assets/css/term-author.css', array(), $this->db_version );
+	}
+
+	/**
 	 * Add the help tabs
 	 *
 	 * @since 0.1.2
@@ -63,23 +73,6 @@ final class WP_Term_Authors extends WP_Term_Meta_UI {
 			'title'   => __( 'Term Author', 'wp-term-authors' ),
 			'content' => '<p>' . __( 'Set term author to help identify who created or owns each term.', 'wp-term-authors' ) . '</p>',
 		) );
-	}
-
-	/**
-	 * Align custom `author` column
-	 *
-	 * @since 0.1.1
-	 */
-	public function admin_head() {
-		?>
-
-		<style type="text/css">
-			.column-author {
-				width: 94px;
-			}
-		</style>
-
-		<?php
 	}
 
 	/**
@@ -100,7 +93,7 @@ final class WP_Term_Authors extends WP_Term_Meta_UI {
 			$display_name = $user->display_name;
 		}
 
-		return $display_name;
+		return '<span data-author="' . esc_attr( $user->ID ) . '">' . esc_html( $display_name ) . '</span>';
 	}
 
 	/**
