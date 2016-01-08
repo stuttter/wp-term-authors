@@ -3,11 +3,14 @@
 /**
  * Plugin Name: WP Term Authors
  * Plugin URI:  https://wordpress.org/plugins/wp-term-authors/
- * Description: Authors for categories, tags, and other taxonomy terms
  * Author:      John James Jacoby
- * Version:     0.2.0
  * Author URI:  https://profiles.wordpress.org/johnjamesjacoby/
- * License:     GPL v2 or later
+ * License:     GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Description: Authors for categories, tags, and other taxonomy terms
+ * Version:     0.2.0
+ * Text Domain: wp-term-authors
+ * Domain Path: /assets/lang/
  */
 
 // Exit if accessed directly
@@ -23,7 +26,7 @@ function _wp_term_authors() {
 	// Setup the main file
 	$plugin_path = plugin_dir_path( __FILE__ );
 
-	// Include the main class
+	// Classes
 	require_once $plugin_path . '/includes/class-wp-term-meta-ui.php';
 	require_once $plugin_path . '/includes/class-wp-term-authors.php';
 }
