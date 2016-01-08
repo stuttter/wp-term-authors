@@ -3,7 +3,7 @@ jQuery( document ).ready( function( $ ) {
 
     $( '.editinline' ).on( 'click', function() {
         var tag_id = $( this ).parents( 'tr' ).attr( 'id' ),
-			author = $( 'td.author span', '#' + tag_id ).attr( 'data-author' );
+			author = $( 'td.author span', '#' + tag_id ).data( 'author' );
 
 		if ( typeof( author ) !== 'undefined' ) {
 			setTimeout( function() {
