@@ -58,7 +58,7 @@ final class WP_Term_Authors extends WP_Term_Meta_UI {
 	 * @since 0.1.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'term-author', $this->url . 'assets/js/term-author.js',  array(), $this->db_version, true );
+		wp_enqueue_script( 'term-author', $this->url . 'assets/js/term-author.js',  array( 'jquery' ), $this->db_version, true );
 		wp_enqueue_style( 'term-author', $this->url . 'assets/css/term-author.css', array(), $this->db_version );
 	}
 
