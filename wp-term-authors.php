@@ -21,13 +21,25 @@ defined( 'ABSPATH' ) || exit;
 function _wp_term_authors() {
 
 	// Setup the main file
-	$file = __FILE__;
+	$plugin_path = plugin_dir_path( __FILE__ );
 
 	// Include the main class
-	include dirname( $file ) . '/includes/class-wp-term-meta-ui.php';
-	include dirname( $file ) . '/includes/class-wp-term-authors.php';
+	require_once $plugin_path . '/includes/class-wp-term-meta-ui.php';
+	require_once $plugin_path . '/includes/class-wp-term-authors.php';
+}
+add_action( 'plugins_loaded', '_wp_term_authors' );
+
+/**
+ * Instantiate the main WordPress Term Author class
+ *
+ * @since 0.2.0
+ */
+function _wp_term_authors_init() {
+
+	// Allow term authors to be registered
+	do_action( 'wp_register_term_authors' );
 
 	// Instantiate the main class
-	new WP_Term_Authors( $file );
+	new WP_Term_Authors( __FILE__ );
 }
-add_action( 'init', '_wp_term_authors', 88 );
+add_action( 'init', '_wp_term_authors_init', 88 );
