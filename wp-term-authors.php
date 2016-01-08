@@ -14,7 +14,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Instantiate the main WordPress Term Color class
+ * Include the required files & dependencies
  *
  * @since 0.1.2
  */
@@ -30,16 +30,11 @@ function _wp_term_authors() {
 add_action( 'plugins_loaded', '_wp_term_authors' );
 
 /**
- * Instantiate the main WordPress Term Author class
+ * Instantiate the main class
  *
  * @since 0.2.0
  */
 function _wp_term_authors_init() {
-
-	// Allow term authors to be registered
-	do_action( 'wp_register_term_authors' );
-
-	// Instantiate the main class
 	new WP_Term_Authors( __FILE__ );
 }
 add_action( 'init', '_wp_term_authors_init', 88 );
