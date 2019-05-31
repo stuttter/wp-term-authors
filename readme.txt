@@ -1,23 +1,19 @@
 === WP Term Authors ===
-Contributors: johnjamesjacoby, stuttter
-Tags: taxonomy, term, meta, metadata, authors, users
+Contributors:      johnjamesjacoby, stuttter
+Tags:              taxonomy, term, meta, metadata, authors, users
+Requires PHP:      5.6.20
 Requires at least: 4.4
-Tested up to: 4.4
-Stable tag: 0.2.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to:      5.2
+Stable tag:        2.0.0
+License:           GPLv2 or later
+License URI:       http://www.gnu.org/licenses/gpl-2.0.html
+Donate link:       https://ko-fi.com/jjj
 
 == Description ==
 
 Authors for categories, tags, and other taxonomy terms
 
 WP Term Authors allows users to assign a authors or owners to any category, tag, or taxonomy term using a dropdown, providing customized functionality for taxonomy terms.
-
-= Dependencies =
-
-Not since WordPress 4.4.
-
-Install the [WP Term Meta](https://wordpress.org/plugins/wp-term-meta/ "Metadata, for taxonomy terms.") plugin if you're on an earlier version.
 
 = Also checkout =
 
@@ -47,7 +43,7 @@ Install the [WP Term Meta](https://wordpress.org/plugins/wp-term-meta/ "Metadata
 
 = Does this plugin depend on any others? =
 
-Yes. Please install the [WP Term Meta](https://wordpress.org/plugins/wp-term-meta/ "Metadata, for taxonomy terms.") plugin.
+No. Not since WordPress 4.4.
 
 = Does this create new database tables? =
 
@@ -86,6 +82,9 @@ The WordPress support forums: https://wordpress.org/support/plugin/wp-term-autho
 http://github.com/stuttter/wp-term-authors/
 
 == Changelog ==
+
+= 2.0.0 =
+* Update base class
 
 = 0.2.0 =
 * Update base class
